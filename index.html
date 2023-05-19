@@ -7,23 +7,32 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
-      background-color: #f9f9f9;
+      background-color: #d4d1ce;
     }
 
     h1, h2, p {
       color: #333;
     }
-
-    .container {
-      max-width: 800px;
+     .container1 {
+      max-width: 2100px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #fff;
+      background-color: #100c08;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+    }
+
+    .container2 {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f8ff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .blog-form input[type="text"], .blog-form textarea, .blog-form button {
-      width: 100%;
+      width: 98%;
       padding: 10px;
       margin-bottom: 10px;
       border: 1px solid #ccc;
@@ -58,12 +67,6 @@
       margin-bottom: 20px;
     }
 
-    .blog-item .separator {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      border-top: 1px solid #ccc;
-    }
-
     .blog-item .date {
       font-size: 12px;
       color: #999;
@@ -72,7 +75,7 @@
     .blog-item .like-btn, .blog-item .dislike-btn {
       margin-right: 10px;
       padding: 5px 10px;
-      background-color: #4CAF50;
+      background-color: #0a7e8c;
       color: white;
       border: none;
       cursor: pointer;
@@ -88,11 +91,24 @@
       margin-top: 5px;
       color: #999;
     }
+
+    .blog-item .separator {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-top: 2px solid #000000;
+    }
+
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <div class="container1">
     <h1>V-L-O-G</h1>
+    </div>
+    <hr>
+  </div>
+
+  <div class="container2">
     <div class="blog-form">
       <h2>Add a Blog Post</h2>
       <input type="text" id="title" placeholder="Title">
@@ -101,11 +117,12 @@
       <button onclick="addBlog()">Add Blog</button>
     </div>
     <hr>
-    <h2>Recent Blog Posts</h2>
     <ul class="blog-list" id="blogList"></ul>
   </div>
 
+
   <script>
+    var name = prompt("What's your name")
     function addBlog() {
       var title = document.getElementById("title").value;
       var imageInput = document.getElementById("image");
@@ -123,15 +140,16 @@
 
         var blogItem = document.createElement("li");
         blogItem.className = "blog-item";
-        blogItem.innerHTML = "<h2>" + title + "</h2>" +
+        blogItem.innerHTML = "<h2>" + name + "</h2>" +
+				     "<h2>" + title + "</h2>" +
                              "<img src='" + image + "' alt='Blog Image'>" +
                              "<p>" + content + "</p>" +
-                             "<div class='separator'></div>" +
                              "<div class='date'>Published on: " + getDate() + "</div>" +
                              "<button class='like-btn' onclick='likeBlog(this)'>Like</button>" +
                              "<button class='dislike-btn' onclick='dislikeBlog(this)'>Dislike</button>" +
                              "<div class='likes'>Likes: 0</div>" +
-                             "<div class='dislikes'>Dislikes: 0</div>";
+                             "<div class='dislikes'>Dislikes: 0</div>" +
+				     "<div class='separator'></div>";
 
         document.getElementById("blogList").appendChild(blogItem);
 
