@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>B-L-O-G</title>
+  <title>V-L-O-G</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
+	margin: 0;
       background-color: #d4d1ce;
+      padding: 20px;
     }
 
-    h1, h2, p {
-      color: #333;
-    }
-     .container1 {
+      .container1 {
       max-width: 2100px;
       margin: 0 auto;
       padding: 20px;
@@ -22,181 +19,98 @@
       position: sticky;
       top: 0;
     }
-
+    
     .container2 {
-      max-width: 1100px;
+      max-width: 600px;
       margin: 0 auto;
-      padding: 20px;
       background-color: #f8f8ff;
+      padding: 20px;
+      border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-
-    .blog-form input[type="text"], .blog-form textarea, .blog-form button {
-      width: 98%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
+    h1{color : #333;}
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+	color: #333;
     }
-
-    .blog-form button {
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+    
+    .form-group input {
+      width: 98%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    
+    .form-group button {
+      padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
-      cursor: pointer;
-    }
-
-    .blog-list {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .blog-item {
-      margin-bottom: 40px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 20px;
-    }
-
-    .blog-item h2 {
-      margin-bottom: 10px;
-    }
-
-    .blog-item img {
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .blog-item .date {
-      font-size: 12px;
-      color: #999;
-    }
-
-    .blog-item .like-btn, .blog-item .dislike-btn {
-      margin-right: 10px;
-      padding: 5px 10px;
-      background-color: #0a7e8c;
-      color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 14px;
     }
-
-    .blog-item .like-btn:hover, .blog-item .dislike-btn:hover {
+    
+    .form-group button:hover {
       background-color: #45a049;
     }
-
-    .blog-item .likes, .blog-item .dislikes {
-      font-size: 14px;
-      margin-top: 5px;
-      color: #999;
-    }
-
-    .blog-item .separator {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      border-top: 2px solid #000000;
-    }
-
   </style>
 </head>
-<body>
-
-  <div class="container1">
-    <h1>B-L-O-G</h1>
+<body><div class="container1">
+    <h1>V-L-O-G</h1>
     </div>
     <hr>
   </div>
 
   <div class="container2">
-    <div class="blog-form">
-      <h2>Add a Blog Post</h2>
-      <input type="text" id="title" placeholder="Title">
-      <input type="file" id="image" accept="image/*">
-      <textarea id="content" placeholder="Content"></textarea>
-      <button onclick="addBlog()">Add Blog</button>
-    </div>
-    <hr>
-    <ul class="blog-list" id="blogList"></ul>
+    <h2>Login</h2>
+    <form id="login-form" action="login.php" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Login</button>
+      </div>
+    </form>
   </div>
 
+ <script>
+    // Function to handle form submission
+    function handleLogin(event) {
+      event.preventDefault(); // Prevent the form from submitting
 
-  <script>
-    var name = prompt("What's your name")
-    function addBlog() {
-      var title = document.getElementById("title").value;
-      var imageInput = document.getElementById("image");
-      var content = document.getElementById("content").value;
+      // Retrieve the entered username and password
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
 
-      if (title === "" || content === "") {
-        alert("Please provide a title and content for the blog post.");
-        return;
+      // Perform login validation here
+      // Example: You can use an AJAX request to send the login credentials to the server-side script for validation
+      // If the login is successful, redirect the user to the next page
+      if (username === 'admin' && password === 'password') {
+        window.location.href = 'index.html'; // Replace 'dashboard.html' with the URL of your next page
+      } else {
+        alert('Invalid username or password. Please try again.');
       }
-
-      var reader = new FileReader();
-
-      reader.onload = function(e) {
-        var image = e.target.result;
-
-        var blogItem = document.createElement("li");
-        blogItem.className = "blog-item";
-        blogItem.innerHTML = "<h2>" + name + "</h2>" +
-				     "<h2>" + title + "</h2>" +
-                             "<img src='" + image + "' alt='Blog Image'>" +
-                             "<p>" + content + "</p>" +
-                             "<div class='date'>Published on: " + getDate() + "</div>" +
-                             "<button class='like-btn' onclick='likeBlog(this)'>Like</button>" +
-                             "<button class='dislike-btn' onclick='dislikeBlog(this)'>Dislike</button>" +
-                             "<div class='likes'>Likes: 0</div>" +
-                             "<div class='dislikes'>Dislikes: 0</div>" +
-				     "<div class='separator'></div>";
-
-        document.getElementById("blogList").appendChild(blogItem);
-
-        document.getElementById("title").value = "";
-        imageInput.value = "";
-        document.getElementById("content").value = "";
-      };
-
-      reader.readAsDataURL(imageInput.files[0]);
     }
 
-    function likeBlog(button) {
-      var blogItem = button.parentNode;
-      var likeBtn = blogItem.querySelector(".like-btn");
-      var dislikeBtn = blogItem.querySelector(".dislike-btn");
-      var likesElement = blogItem.querySelector(".likes");
-      var dislikesElement = blogItem.querySelector(".dislikes");
-
-      likeBtn.classList.add("liked");
-      dislikeBtn.classList.remove("disliked");
-
-      var likes = parseInt(likesElement.textContent.split(":")[1]);
-      likesElement.textContent = "Likes: " + (likes + 1);
-    }
-
-    function dislikeBlog(button) {
-      var blogItem = button.parentNode;
-      var likeBtn = blogItem.querySelector(".like-btn");
-      var dislikeBtn = blogItem.querySelector(".dislike-btn");
-      var likesElement = blogItem.querySelector(".likes");
-      var dislikesElement = blogItem.querySelector(".dislikes");
-
-      dislikeBtn.classList.add("disliked");
-      likeBtn.classList.remove("liked");
-
-      var dislikes = parseInt(dislikesElement.textContent.split(":")[1]);
-      dislikesElement.textContent = "Dislikes: " + (dislikes + 1);
-    }
-
-    function getDate() {
-      var date = new Date();
-      var year = date.getFullYear();
-      var month = date.getMonth() + 1;
-      var day = date.getDate();
-
-      return day + "/" + month + "/" + year;
-    }
+    // Attach event listener to the form submission
+    var loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', handleLogin);
   </script>
 </body>
 </html>
