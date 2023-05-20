@@ -12,18 +12,20 @@
 
     h1, h2, p {
       color: #333;
+      margin: 2px;
+      padding: 2px;
     }
     
-    h6 {color : #FFFFFF;
+    h6 {color : #d2f04e;
 	  text-align:right;
-	  vertical-aligh:center;}
+	  vertical-aligh:center;
+    margin : 10px;
+  }
 
      .container1 {
-      max-width: 2100px;
-      margin: 0 auto;
-      padding: 20px;
+      margin: 0;
+      padding: 0px;
       background-color: #100c08;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
     }
@@ -47,9 +49,15 @@
     }
 
     .blog-form button {
-      background-color: #4CAF50;
+
+      background-color: #000000;
       color: white;
       cursor: pointer;
+      width: 20%;
+    }
+    .vlog {
+      position : center left;
+      margin : 10px;
     }
 
     .blog-list {
@@ -70,7 +78,7 @@
 
     .blog-item img {
       max-width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 2px;
     }
 
     .blog-item .date {
@@ -81,19 +89,20 @@
     .blog-item .like-btn, .blog-item .dislike-btn {
       margin-right: 10px;
       padding: 5px 10px;
-      background-color: #0a7e8c;
+      background-color: #000000;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 14px;
+      border-radius: 4px;
     }
 
     .blog-item .like-btn:hover, .blog-item .dislike-btn:hover {
-      background-color: #45a049;
+      background-color: #9c8e8e;
     }
 
     .blog-item .likes, .blog-item .dislikes {
-      font-size: 14px;
+      font-size: 10px;
       margin-top: 5px;
       color: #999;
     }
@@ -109,7 +118,7 @@
 <body>
 
   <div class="container1">
-    <h1>V-L-O-G</h1>
+    <h1 class="vlog">V-L-O-G</h1>
     <h6>Welcome Admin</h6>
     </div>
     <hr>
@@ -147,10 +156,9 @@
         var blogItem = document.createElement("li");
         blogItem.className = "blog-item";
         blogItem.innerHTML = "<h2>" + name + "</h2>" +
-				     "<h3>" + title + "</h3>" +
+				                      "<h3>" + title + "</h3>" +
                              "<img src='" + image + "' alt='Blog Image'>" +
                              "<p>" + content + "</p>" +
-                             "<div class='date'>Published on: " + getDate() + "</div>" +
                              "<button class='like-btn' onclick='likeBlog(this)'>Like</button>" +
                              "<button class='dislike-btn' onclick='dislikeBlog(this)'>Dislike</button>" +
                              "<div class='likes'>Likes: 0</div>" +
